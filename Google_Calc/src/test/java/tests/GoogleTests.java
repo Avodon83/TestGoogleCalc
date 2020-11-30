@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GoogleTests {
 
@@ -24,10 +25,24 @@ public class GoogleTests {
     }
 
     @Test
-    @DisplayName("Поиск калькулятора")
+    @DisplayName("Проверка операций с целыми числами")
     public void test1(){
         driver.get("https://google.com");
         driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='j93WEe']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='N10B9']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='XSr6wc']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='lVjWed']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='qCp9A']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='KN1kY']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='pPHzQc']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='xAP7E']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='bkEvMb']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='WxTTNd']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='Ax5wH']")).sendKeys("", Keys.ENTER);
+
+        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        assertEquals("1",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
     }
 
     @AfterAll
