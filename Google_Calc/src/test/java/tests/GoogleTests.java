@@ -45,6 +45,19 @@ public class GoogleTests {
         assertEquals("1",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
     }
 
+    @Test
+    @DisplayName("Проверка деления на ноль")
+    public void test2(){
+        driver.get("https://google.com");
+        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='abcgof']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='WxTTNd']")).sendKeys("", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='bkEvMb']")).sendKeys("", Keys.ENTER);
+
+        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        assertEquals("Infinity",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+    }
+
     @AfterAll
     public static void shutdown(){
         driver.quit();
