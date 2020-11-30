@@ -58,6 +58,17 @@ public class GoogleTests {
         assertEquals("Infinity",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
     }
 
+    @Test
+    @DisplayName("Проверка ошибки при отсутствии значения")
+    public void test3(){
+        driver.get("https://google.com");
+        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        driver.findElement(By.cssSelector("div[jsname='aN1RFf']")).sendKeys("", Keys.ENTER);
+
+        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        assertEquals("Error",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+    }
+
     @AfterAll
     public static void shutdown(){
         driver.quit();
