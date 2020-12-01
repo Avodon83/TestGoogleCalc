@@ -75,62 +75,60 @@ public class Control_Calc {
     }
 
     public void buttonEqual() {
-        buttonEqual.sendKeys("", Keys.ENTER);
+        buttonEqual.click();
     }
 
     public void buttonBracket() {
-        buttonBracket.sendKeys("", Keys.ENTER);
+        buttonBracket.click();
     }
 
     public void buttonEndBracket() {
-        buttonEndBracket.sendKeys("", Keys.ENTER);
+        buttonEndBracket.click();
     }
 
     public void buttonDigit0() {
-        buttonDigit0.sendKeys("", Keys.ENTER);
+        buttonDigit0.click();
     }
 
-    public void buttonDigit1() {
-        buttonDigit1.sendKeys("", Keys.ENTER);
-    }
+    public void buttonDigit1() { buttonDigit1.click(); }
 
     public void buttonDigit2() {
-        buttonDigit2.sendKeys("", Keys.ENTER);
+        buttonDigit2.click();
     }
 
     public void buttonDigit3() {
-        buttonDigit3.sendKeys("", Keys.ENTER);
+        buttonDigit3.click();
     }
 
     public void buttonDigit4() {
-        buttonDigit4.sendKeys("", Keys.ENTER);
+        buttonDigit4.click();
     }
 
     public void buttonDigit5() {
-        buttonDigit5.sendKeys("", Keys.ENTER);
+        buttonDigit5.click();
     }
 
     public void buttonDigit6() {
-        buttonDigit6.sendKeys("", Keys.ENTER);
+        buttonDigit6.click();
     }
 
     public void buttonPlus() {
-        buttonPlus.sendKeys("", Keys.ENTER);
+        buttonPlus.click();
     }
 
     public void buttonMinus() {
-        buttonMinus.sendKeys("", Keys.ENTER);
+        buttonMinus.click();
     }
 
     public void buttonDivide() {
-        buttonDivide.sendKeys("", Keys.ENTER);
+        buttonDivide.click();
     }
 
     public void buttonMultiply() {
-        buttonMultiply.sendKeys("", Keys.ENTER);
+        buttonMultiply.click();
     }
 
     public void buttonSin() {
-        buttonSin.sendKeys("", Keys.ENTER);
+        buttonSin.click();
     }
 }
