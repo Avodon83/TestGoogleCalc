@@ -1,10 +1,7 @@
 package tests;
 
 import org.junit.After;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -29,24 +26,28 @@ public class GoogleTests {
         searchPage = new Control_Calc(driver);
     }
 
+    @BeforeEach
+    public void setup(){
+        driver.get("https://google.com");
+    }
+
     @Test
     @DisplayName("Проверка операций с целыми числами")
     public void test1(){
-        driver.get("https://google.com");
         searchPage.search("Калькулятор");
-        driver.findElement(By.cssSelector("div[jsname='j93WEe']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='N10B9']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='XSr6wc']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='lVjWed']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='qCp9A']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='KN1kY']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='pPHzQc']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='xAP7E']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='bkEvMb']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='WxTTNd']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='Ax5wH']")).sendKeys("", Keys.ENTER);
-
-        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        searchPage.buttonBracket();
+        searchPage.buttonDigit1();
+        searchPage.buttonPlus();
+        searchPage.buttonDigit2();
+        searchPage.buttonEndBracket();
+        searchPage.buttonMultiply();
+        searchPage.buttonDigit3();
+        searchPage.buttonMinus();
+        searchPage.buttonDigit4();
+        searchPage.buttonDigit0();
+        searchPage.buttonDivide();
+        searchPage.buttonDigit5();
+        searchPage.buttonEqual();
         assertAll (
                 () -> assertEquals("1",searchPage.getResult())
         );
@@ -55,13 +56,11 @@ public class GoogleTests {
     @Test
     @DisplayName("Проверка деления на ноль")
     public void test2(){
-        driver.get("https://google.com");
         searchPage.search("Калькулятор");
-        driver.findElement(By.cssSelector("div[jsname='abcgof']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='WxTTNd']")).sendKeys("", Keys.ENTER);
-        driver.findElement(By.cssSelector("div[jsname='bkEvMb']")).sendKeys("", Keys.ENTER);
-
-        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        searchPage.buttonDigit6();
+        searchPage.buttonDivide();
+        searchPage.buttonDigit0();
+        searchPage.buttonEqual();
         assertAll (
                 () -> assertEquals("Infinity",searchPage.getResult())
         );
@@ -70,11 +69,9 @@ public class GoogleTests {
     @Test
     @DisplayName("Проверка ошибки при отсутствии значения")
     public void test3(){
-        driver.get("https://google.com");
         searchPage.search("Калькулятор");
-        driver.findElement(By.cssSelector("div[jsname='aN1RFf']")).sendKeys("", Keys.ENTER);
-
-        driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
+        searchPage.buttonSin();
+        searchPage.buttonEqual();
         assertAll (
                 () -> assertEquals("Error",searchPage.getResult())
         );
