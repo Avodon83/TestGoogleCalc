@@ -10,11 +10,15 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.Control_Calc;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GoogleTests {
 
     private static WebDriver driver;
+    private static Control_Calc searchPage;
 
     @BeforeAll
     public static void init(){
@@ -22,13 +26,14 @@ public class GoogleTests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
+        searchPage = new Control_Calc(driver);
     }
 
     @Test
     @DisplayName("Проверка операций с целыми числами")
     public void test1(){
         driver.get("https://google.com");
-        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        searchPage.search("Калькулятор");
         driver.findElement(By.cssSelector("div[jsname='j93WEe']")).sendKeys("", Keys.ENTER);
         driver.findElement(By.cssSelector("div[jsname='N10B9']")).sendKeys("", Keys.ENTER);
         driver.findElement(By.cssSelector("div[jsname='XSr6wc']")).sendKeys("", Keys.ENTER);
@@ -42,31 +47,37 @@ public class GoogleTests {
         driver.findElement(By.cssSelector("div[jsname='Ax5wH']")).sendKeys("", Keys.ENTER);
 
         driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
-        assertEquals("1",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+        assertAll (
+                () -> assertEquals("1",searchPage.getResult())
+        );
     }
 
     @Test
     @DisplayName("Проверка деления на ноль")
     public void test2(){
         driver.get("https://google.com");
-        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        searchPage.search("Калькулятор");
         driver.findElement(By.cssSelector("div[jsname='abcgof']")).sendKeys("", Keys.ENTER);
         driver.findElement(By.cssSelector("div[jsname='WxTTNd']")).sendKeys("", Keys.ENTER);
         driver.findElement(By.cssSelector("div[jsname='bkEvMb']")).sendKeys("", Keys.ENTER);
 
         driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
-        assertEquals("Infinity",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+        assertAll (
+                () -> assertEquals("Infinity",searchPage.getResult())
+        );
     }
 
     @Test
     @DisplayName("Проверка ошибки при отсутствии значения")
     public void test3(){
         driver.get("https://google.com");
-        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("Калькулятор", Keys.ENTER);
+        searchPage.search("Калькулятор");
         driver.findElement(By.cssSelector("div[jsname='aN1RFf']")).sendKeys("", Keys.ENTER);
 
         driver.findElement(By.cssSelector("div[jsname='Pt8tGc']")).sendKeys("", Keys.ENTER);
-        assertEquals("Error",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+        assertAll (
+                () -> assertEquals("Error",searchPage.getResult())
+        );
     }
 
     @AfterAll
